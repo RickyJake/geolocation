@@ -7,7 +7,7 @@ pipeline {
         maven 'M2_HOME'
     }
     stages {
-        stage('maven package') {
+        stage('maven build') {
             steps {
                 sh 'mvn clean'
                 sh 'mvn install'
@@ -21,9 +21,15 @@ pipeline {
             }
         }
 
+        stage('maven package') {
+            steps {
+                sh 'mvn package'
+            }
+        }
+
         stage('Deploy') {
             steps {
-                echo 'deploy'
+                echo 'Only echoing deploy'
             }
         }
     }
