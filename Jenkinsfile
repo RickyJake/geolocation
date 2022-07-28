@@ -7,9 +7,14 @@ pipeline {
         maven 'M2_HOME'
     }
     stages {
-        stage('maven build') {
+        stage('maven clean') {
             steps {
                 sh 'mvn clean'
+            }
+        }
+
+        stage('maven build') {
+            steps {
                 sh 'mvn install'
             }
         }
