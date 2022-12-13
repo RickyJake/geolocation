@@ -31,9 +31,13 @@ pipeline {
             }
         }
 
-        stage('Deploy') {
+        stage('Upload Artifact') {
             steps {
-                echo 'Try to deploy'
+                nexusArtifactUploader artifacts: [[artifactId: '${POM_ARTIFACTID}', 
+                classifier: '', file: 'target/${POM_ARTIFACTID}-${POM_VERSION}.${POM_PACKAGING}', 
+                type: '${POM_PACKAGING}']], credentialsId: 'NexusID', groupId: '${POM_GROUPID}', 
+                nexusUrl: '192.168.43.145:8081', nexusVersion: 'nexus3', protocol: 'http', 
+                repository: 'pipeline', version: '${POM_VERSION}'
             }
         }
     }
