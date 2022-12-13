@@ -33,7 +33,7 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                echo 'Only echoing deploy'
+                echo 'Try to deploy'
             }
         }
     }
